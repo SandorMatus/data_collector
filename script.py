@@ -47,7 +47,7 @@ for url in urls:
             # Save the extracted data to a file in JSON format
             filename = url.split('/')[-1] + ".json"  # Generate a unique filename based on the URL
             with open(filename, "w", encoding="utf-8") as file:
-                json.dump(extracted_data, file, ensure_ascii=False, indent=4)
+                json.dump(extracted_json, file, ensure_ascii=False, indent=4)
 
             print("Response data for", url, "saved to", filename)
         except json.decoder.JSONDecodeError as e:
