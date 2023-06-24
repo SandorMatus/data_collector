@@ -2,3 +2,6 @@
 
 ## HOW TO RUN
 Vypln urlcka do urls.xlsl, bud rucne alebo pomocou skritpu alebo spidera. Program prebehne urlcka a vytvory jsony pre kazde url responsy.
+
+### DEPENDENCIES
+python a zvysok ci chyba doinstalovat pomocou pip
