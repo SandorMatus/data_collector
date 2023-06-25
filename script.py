@@ -35,7 +35,7 @@ for url in urls:
         extracted_data = response_content[start_index:end_index + 1]
 
         # Add a comma after "classifications" to separate it from the following dictionary
-        extracted_data = extracted_data.replace('"classifications":[', '[{"classifications":[')
+        extracted_data = extracted_data.replace('"classifications":[', '[{' + '"' + url.split('/')[-2] + '"' + ':[')
 
         extracted_data = extracted_data.replace("'", "\"")
         # Add the closing square bracket to complete the JSON array
@@ -49,7 +49,7 @@ for url in urls:
             extracted_json = json.loads(extracted_data)
 
             # Save the extracted data to a file in JSON format
-            filename = url.split('/')[-1] + "_" + url.split('/')[-2] + ".json"  # Generate a unique filename based on the URL
+            filename = url.split('/')[-2] + ".json"  # Generate a unique filename based on the URL
             with open(filename, "w", encoding="utf-8") as file:
                 json.dump(extracted_json, file, ensure_ascii=False, indent=4)
 
