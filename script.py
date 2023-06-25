@@ -49,7 +49,7 @@ for url in urls:
             extracted_json = json.loads(extracted_data)
 
             # Save the extracted data to a file in JSON format
-            filename = url.split('/')[-1] + ".json"  # Generate a unique filename based on the URL
+            filename = url.split('/')[-1] + url.split('/')[0] +".json"  # Generate a unique filename based on the URL
             with open(filename, "w", encoding="utf-8") as file:
                 json.dump(extracted_json, file, ensure_ascii=False, indent=4)
 
