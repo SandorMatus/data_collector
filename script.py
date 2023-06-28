@@ -29,21 +29,22 @@ for url in urls:
         start_index = response_content.find('"classifications"')
 
         # Find the index of the next closing square bracket "]" after "classifications"
-        end_index = response_content.find(']', start_index)
+        end_index = response_content.find('}],', start_index)
 
         # Extract the text with "classifications"
         extracted_data = response_content[start_index:end_index + 1]
 
         # Add a comma after "classifications" to separate it from the following dictionary
-        extracted_data = extracted_data.replace('"classifications":[', '[{' + '"' + url.split('/')[-2] + '"' + ':[')
+        extracted_data = extracted_data.replace('"classifications":[', '{' + '"' + url.split('/')[-2] + '"' + ':[')
 
         extracted_data = extracted_data.replace("'", "\"")
+
         # Add the closing square bracket to complete the JSON array
         if abs(-2) < len(extracted_data):
             if extracted_data[-2] == '}':
-                extracted_data += '}]'
+                extracted_data += ']}'
             else:
-                extracted_data += '"}]}]'
+                extracted_data += ']}'
         try:
             # Parse extracted data as JSON
             extracted_json = json.loads(extracted_data)
@@ -56,6 +57,5 @@ for url in urls:
             print("Response data for", url, "saved to", filename)
         except json.decoder.JSONDecodeError as e:
             print("Error parsing JSON for", url, ":", e)
-            print(extracted_data)
     else:
         print("Request failed for", url, "with status code:", response.status_code)

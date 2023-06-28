@@ -9,7 +9,7 @@ def combine_json_files(folder_path, output_file):
             file_path = os.path.join(folder_path, filename)
             with open(file_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
-                combined_data.extend(data)
+                combined_data.append(data)
 
     with open(output_file, "w", encoding="utf-8") as output:
         json.dump(combined_data, output, ensure_ascii=False, indent=4)
